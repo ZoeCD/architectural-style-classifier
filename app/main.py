@@ -1,6 +1,8 @@
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from PIL import Image
 import io
+
+import os
 from src.predict import ArchStyleClassifier
 
 app = FastAPI(
@@ -8,9 +10,12 @@ app = FastAPI(
     description="API for classifying architectural styles using a pre-trained EfficientNet model.",
 )
 
+base_dir = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(base_dir, "..", "models", "best_model.pth")
+labels_path = os.path.join(base_dir, "..", "models", "class_labels.json")
 classifier = ArchStyleClassifier(
-    model_path="../models/best_model.pth",
-    labels_path="../models/class_labels.json"
+    model_path=model_path,
+    labels_path=labels_path
 )
 
 @app.get("/")
