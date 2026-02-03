@@ -9,8 +9,8 @@ app = FastAPI(
 )
 
 classifier = ArchStyleClassifier(
-    model_path="/workspaces/architectural-style-classifier/models/best_model.pth",
-    labels_path="/workspaces/architectural-style-classifier/models/class_labels.json"
+    model_path="../models/best_model.pth",
+    labels_path="../models/class_labels.json"
 )
 
 @app.get("/")
