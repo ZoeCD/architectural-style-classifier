@@ -86,7 +86,8 @@ architectural-style-classifier/
 │   └── class_labels.json
 ├── notebooks/
 │   └── data-exploration.ipynb
-├── examples/              # Sample images for demo
+|   └── example-api.ipynb  # API request example
+├── example_images/              # Sample images for demo
 ├── Dockerfile
 ├── requirements.txt
 └── README.md
