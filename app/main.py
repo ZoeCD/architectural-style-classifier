@@ -28,8 +28,10 @@ def health():
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
+    if file is None or file.content_type is None:
+        raise HTTPException(status_code=400, detail="No file or content type provided.")
     if not file.content_type.startswith("image/"):
-        raise HTTPException(status_code=400, detail="File must be an image.")
+        raise HTTPException(status_code=400, detail="File must be an image. Got: {}".format(file.content_type))
     
     contents = await file.read()
     image = Image.open(io.BytesIO(contents)).convert("RGB")
